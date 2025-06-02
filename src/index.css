@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Tangerine");
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
+@theme {
+    --font-tangerine: "Tangerine", serif; 
+   
+  }
