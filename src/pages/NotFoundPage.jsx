@@ -5,7 +5,7 @@ import image from "/src/assets/404.svg";
 const NotFoundPage = () => {
   return (
     <section className="flex flex-col bg-white text-center justify-items-center ">
-      <div className="mx-auto">
+      <div className="mx-auto mt-15">
         <img src={image} alt="Page not found" className="w-sm mt-5 mb-10" />
       </div>
       <h1 className="text-6xl text-indigo-500 font-bold mb-4">

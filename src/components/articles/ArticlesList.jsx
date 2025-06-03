@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-
-import { nanoid } from "nanoid";
 import Spinner from "../Spinner";
 import SearchInput from "../SearchInput";
 import ArticleCard from "./ArticleCard";
@@ -56,32 +54,22 @@ const ArticlesList = ({ isHome }) => {
     setSearchResult(filteredArticles);
   }, [search]);
 
-  const handleChange = (e) => {
-    setSearch(e.target.value.toLowerCase());
-  };
+  const handleChange = (e) => {setSearch(e.target.value.toLowerCase())};
 
   return (
     <>
+    
      { !isHome?<SearchInput onChange={handleChange} />:""  } 
-
+     {loading ? ( <Spinner loading={loading} />
+              ) : (
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {searchResult.map((articleItem) => {
-          return (
-            <>
-              {loading ? (
-                <Spinner loading={loading} />
-              ) : (
-                <li
-                  key={articleItem._id}
-                  className="bg-white dark:bg-gray-800 dark:border-1 dark:border-blue-500 rounded-xl shadow-md relative"
-                >
-                  <ArticleCard article={articleItem} />
-                </li>
-              )}
-            </>
-          );
-        })}
-      </ul>
+          return(
+          <li key={articleItem._id.toString()} className= "overflow-hidden bg-white dark:bg-gray-800 dark:border-1 dark:border-blue-500 rounded-xl shadow-md relative">
+            <ArticleCard article={articleItem}  /> </li>);
+         })}
+      </ul> 
+    )}
     </>
   );
 };

@@ -1,11 +1,11 @@
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import UploadAndDisplayImage from "../components/UploadAndDisplayImage";
+import ImgUploader from "../components/ImgUploader";
+
 
 const initialNewArticle = {
-  img: "PlaceSaintSophie.jpg",
+  img: "",
   title: "",
   subtitle: "",
   type: "Itinéraires",
@@ -18,18 +18,12 @@ const initialNewArticle = {
 
 const AddArticlePage = ({ addArticleSubmit }) => {
   const [newArticle, setNewArticle] = useState(initialNewArticle);
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    // Prevent the browser from reloading the page
     e.preventDefault();
-
     addArticleSubmit(newArticle);
     toast.success("Article Added Successfully!");
-
-    // console.log("newArticle===>", newArticle);
-
     return navigate("/articles");
   };
 
@@ -44,29 +38,37 @@ const AddArticlePage = ({ addArticleSubmit }) => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="mb-4 mr-2">
-                <label  htmlFor="img" className="block text-gray-700 font-bold mb-2">
+                <label  htmlFor="img" className="block text-gray-500 font-bold mb-2">
                   Image
                 </label>
-                {/* <UploadAndDisplayImage imageName={newArticle.img}/> */}
                 <input
-                  // type="img"
                   type="file"
                   id="img"
-                  name={img}
+                  name={newArticle.img}
                   className="bg-indigo-50 dark:bg-gray-800 dark:border-1 dark:border-indigo-500 rounded w-full py-2 px-3 mb-2"
                   placeholder="ajouter un image..."
                   required
-                  // value={newArticle.img} 
                   onChange={(e) =>
-                    // setNewArticle({ ...newArticle, img: e.target.value })
-                    setNewArticle({ ...newArticle, img: e.target.files[0].name })
+                   setNewArticle({ ...newArticle, img: e.target.files[0].name })
                   }
                 />
+               {newArticle.img && (
+                  <div>
+                    {/* Display the selected image */}
+                    <ImgUploader stateImg={newArticle.img}/>
+                    <br />
+                    {/* Button to remove the selected image */}
+                    <Link
+                    className="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+                    onClick={() => setNewArticle({ ...newArticle, img: "" })}>Remove</Link>
+                  </div>
+                 )}
+               
               </div>
               <div className="mb-4">
                 <label
                   htmlFor="type"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-gray-500 font-bold mb-2"
                 >
                   Type de Article
                 </label>
@@ -88,7 +90,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
               </div>
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold mb-2">
+                <label className="block text-gray-500 font-bold mb-2">
                   Titre
                 </label>
                 <input
@@ -105,7 +107,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="subtitle" className="block text-gray-700 font-bold mb-2">
+                <label htmlFor="subtitle" className="block text-gray-500 font-bold mb-2">
                   SudTitre
                 </label>
                 <input
@@ -124,7 +126,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
               <div className="mb-4">
                 <label
                   htmlFor="description"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-gray-500 font-bold mb-2"
                 >
                   Description
                 </label>
@@ -141,7 +143,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
                 ></textarea>
               </div>
               <div className="mb-4">
-                <label htmlFor="subtitle" className="block text-gray-700 font-bold mb-2">
+                <label htmlFor="subtitle" className="block text-gray-500 font-bold mb-2">
                   Sub Titre 2 (optional)
                 </label>
                 <input
@@ -160,7 +162,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
               <div className="mb-4">
                 <label
                   htmlFor="description"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-gray-500 font-bold mb-2"
                 >
                   Description 2 (optional)
                 </label>
@@ -178,7 +180,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
               </div>
 <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="mb-4 mr-2">
-                <label className="block text-gray-700 font-bold mb-2">
+                <label className="block text-gray-500 font-bold mb-2">
                   Lieu
                 </label>
                 <input
@@ -195,7 +197,7 @@ const AddArticlePage = ({ addArticleSubmit }) => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold mb-2">
+                <label className="block text-gray-500 font-bold mb-2">
                   Pays
                 </label>
                 <input

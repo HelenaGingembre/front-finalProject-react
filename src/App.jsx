@@ -27,12 +27,10 @@ function App() {
           element={<EditArticlePage updateArticleSubmit={updateArticle} />}
           loader={articleLoader}
         />
-        
         <Route path="*" element={<NotFoundPage />} />
       </Route>
   )
 );
-
 return <RouterProvider router={router} />;
 }
 

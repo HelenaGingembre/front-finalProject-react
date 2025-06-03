@@ -1,14 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ImgUploader from '../components/ImgUploader';
 
 const EditArticlePage = ({ updateArticleSubmit }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const article = useLoaderData();
-  console.log("useLoaderData article", article);
-  
 
   const [img, setImg] = useState(article.img);
   const [title, setTitle] = useState(article.title);
@@ -63,6 +62,18 @@ const EditArticlePage = ({ updateArticleSubmit }) => {
                 setImg(e.target.files[0].name)
               }
             />
+            {img && (
+        <div>
+          {/* Display the selected image */}
+          <ImgUploader stateImg={img}/>
+          <br />
+          {/* Button to remove the selected image */}
+          <Link 
+          className="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+           onClick={() => setImg( null )}>Remove</Link>
+        </div>
+      )}
+            
           </div>
           <div className="mb-4">
             <label

@@ -6,7 +6,9 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <ArticlesWrap isHome={true} title={"Articles récents"} />
+      <ArticlesWrap 
+      isHome={true} 
+      title={"Articles récents"} />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import ThemeToggleSwitch from "./ThemeToggleSwitch";
 
 const NavBar = () => {
   const navClass = ({ isActive }) =>
@@ -9,9 +10,9 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="bg-blue-400 border-b border-blue-500">
+      <nav className="fixed w-full z-20 top-0 start-0 ">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-20 items-center justify-between px-2 bg-blue-400 border-b border-blue-500">
             <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
               {/* <!-- Logo --> */}
               <Link className="flex flex-shrink-0 items-center mr-4" to="/">
@@ -20,7 +21,7 @@ const NavBar = () => {
                 </span>
               </Link>
               <div className="md:ml-auto">
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 align-middle">
                   <NavLink to="/" className={navClass}>
                     Acceuil
                   </NavLink>
@@ -30,6 +31,7 @@ const NavBar = () => {
                   <NavLink to="/add-article" className={navClass}>
                     Ajouter Article
                   </NavLink>
+                  <ThemeToggleSwitch />
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 const MainLayout = () => {
   return (
     <>
-      <NavBar />
+     <NavBar />
       <Suspense
         fallback={
           <div>
@@ -20,6 +20,7 @@ const MainLayout = () => {
       </Suspense>
       <Footer />
       <ToastContainer />
+      
     </>
   );
 };

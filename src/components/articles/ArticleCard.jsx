@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const ArticleCard = ({ article }) => {
   const { _id, img, type, title, subtitle, description, subtitle_2, description_2,  location, pays } = article;
 
-  
   const [showFullDesc, setShowFullDesc] = useState(false);
   let descriptionMod = description;
   if (!showFullDesc) {
@@ -14,7 +13,9 @@ const ArticleCard = ({ article }) => {
 
   return (
     <>
-      <div><img src={`/public/img/${img}`} alt={title}/></div>
+     <div className="h-50 md:h-40  w-full overflow-hidden">
+      <img src={`/public/img/${img}`} alt={title} className="w-full object-cover"/>
+      </div>
       <div className="mb-5 px-4">
         <div className="text-gray-600 font-tangerine text-4xl my-2">{type}</div>
         <h3 className="text-xl ">{title}</h3>
@@ -47,6 +48,7 @@ const ArticleCard = ({ article }) => {
           Lire plus
         </Link>
       </div>
+      
     </>
   );
 };
